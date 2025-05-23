@@ -207,21 +207,23 @@ useEffect(() => {
                     .from("Jobs_form")
                     .insert([jobData]);
 
-                // Insert into Notify (p.sh. vetëm disa fusha relevante)
-                // Optionally insert into Notify if needed
-                // const notifyData = {
-                //     name,
-                //     photo: Array.isArray(photo) ? photo : [photo],
-                //     contactNumber,
-                //     contactEmail,
-                //     createdBy,
-                // };
-                // await supabase.from("Notify").insert([notifyData]);
+                // Insert into Notify (me të dhëna relevante nga job)
+                const notifyData = {
+                   
+                    name,
+                    photo: Array.isArray(photo) ? photo : [photo],
+                    contactNumber,
+                    contactEmail,
+                    createdBy,
+                };
+                const { error: notifyError } = await supabase
+                    .from("Notify")
+                    .insert([notifyData]);
 
                 setLoading(false);
 
-                if (jobError) {
-                    console.error("Error creating job:", jobError);
+                if (jobError || notifyError) {
+                    console.error("Error creating job or notify:", jobError, notifyError);
                 } else {
                     navigate("/my-competitions");
                 }
