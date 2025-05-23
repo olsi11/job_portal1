@@ -433,8 +433,9 @@ useEffect(() => {
                             isNotify ? "bg-green-500 hover:bg-green-600" : "bg-blue-500 hover:bg-blue-600"
                         } ${loading || notifyLoading ? "opacity-50 cursor-not-allowed" : ""}`}
                         disabled={loading || notifyLoading}
+                        text={"CreateJob"}
                     >
-                    Create
+                    
                         {isNotify ? (notifyToEdit ? "Update Notification" : "Create Notification") : (productToEdit ? "Update Job" : "Create Job")}
                     </Button>
                 </div>
